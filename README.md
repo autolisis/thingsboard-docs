@@ -3,34 +3,31 @@
 0. Pre-requisites
 
    - [Set up Ubuntu Environment](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04#installing-the-oracle-jdk)
-
-     ```bash
-     sudo add-apt-repository ppa:webupd8team/java
-     sudo apt-get update
-     sudo apt-get install oracle-java8-installer
-     ```
-
-     
+   ```bash
+   sudo add-apt-repository ppa:webupd8team/java
+   sudo apt-get update
+   sudo apt-get install oracle-java8-installer
+   ```
 
    - Set up PostgreSQL
 
-     ```bash
-     sudo apt-get update
-     sudo apt-get install postgresql postgresql-contrib
-     sudo service postgresql enable
-     sudo service postgresql start
-     ```
+   ```bash
+   sudo apt-get update
+   sudo apt-get install postgresql postgresql-contrib
+   sudo service postgresql enable
+   sudo service postgresql start
+   ```
 
    - Add ThingsBoard DB to PostgreSQL
 
-     Run this command in Terminal: `psql -U postgres -d postgres -h 127.0.0.1 -W`
+   Run this command in Terminal: `psql -U postgres -d postgres -h 127.0.0.1 -W`
 
-     And then,
+   And then,
 
-     ```sql
-     CREATE DATABASE thingsboard;
-     \q
-     ```
+   ```sql
+   CREATE DATABASE thingsboard;
+   \q
+   ```
 
    - [Also, change the username and password of the default Postgres user](https://blog.2ndquadrant.com/how-to-safely-change-the-postgres-user-password-via-psql/)
 
@@ -38,9 +35,9 @@
 
    - Run this command in Terminal :
 
-     ```bash
-     wget https://github.com/thingsboard/thingsboard/releases/download/v2.0.3/thingsboard-2.0.3.deb
-     ```
+   ```bash
+   wget https://github.com/thingsboard/thingsboard/releases/download/v2.0.3/thingsboard-2.0.3.deb
+   ```
 
 2. Install ThingsBoard
 
@@ -86,23 +83,23 @@
 
      Uncomment all the lines so that it looks similar to this
 
-     ```yaml
-     # PostgreSQL DAO Configuration
-     spring:
-       data:
-         jpa:
-           repositories:
-             enabled: "true"
+   ```yaml
+   # PostgreSQL DAO Configuration
+   spring:
+     data:
        jpa:
-         hibernate:
-           ddl-auto: "validate"
-         database-platform: "org.hibernate.dialect.PostgreSQLDialect"
-       datasource:
-         driverClassName: "${SPRING_DRIVER_CLASS_NAME:org.postgresql.Driver}"
-         url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/thingsboard}"
-         username: "${SPRING_DATASOURCE_USERNAME:postgres}"
-         password: "${SPRING_DATASOURCE_PASSWORD:postgres}"
-     ```
+         repositories:
+           enabled: "true"
+     jpa:
+       hibernate:
+         ddl-auto: "validate"
+       database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+     datasource:
+       driverClassName: "${SPRING_DRIVER_CLASS_NAME:org.postgresql.Driver}"
+       url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/thingsboard}"
+       username: "${SPRING_DATASOURCE_USERNAME:postgres}"
+       password: "${SPRING_DATASOURCE_PASSWORD:postgres}"
+   ```
 
      ### NOTE Remember to change the password of the `postgres` user to the one that you changed to in Step 0
 
