@@ -131,3 +131,56 @@
 Congratulations! You have successfully set up the ThingsBoard server. You can now see the web ui on (within 5 minutes)
 
 `http://localhost:8080`
+
+
+
+Now, we are ready to set up the GPSAdapter to act as a bridge between the GPS Data that comes into the system through TCP and ThingsBoard which needs MQTT protocol.
+
+<br/>
+
+For this, use the code at gitlab.com/reisub0/gpsAdapter
+
+Since this is written in GoLang, we need to set up a few steps beforehand.
+
+1. First, install Go
+
+   ```bash
+   snap install --classic go
+   ```
+
+2. Set GOPATH environment variable: Add this to .bash_profile
+
+   ```bash
+   export PATH="$PATH:/root/.go"
+   ```
+
+3. Reboot the system for the path changes to take effect.
+
+4. Now, install the Dep GoLang package to help with the dependencies
+  ```bash
+  curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+  ```
+
+5. We are ready to download the gpsAdapter package.
+
+   ```bash
+   go get -u gitlab.com/reisub0/gpsAdapter
+   ```
+
+6. Now to ensure all the dependencies are correct
+
+   ```bash
+   cd $GOPATH
+   cd src/gitlab.com/reisub0/gpsAdapter
+   dep ensure
+   ```
+
+7. Now we can install gpsAdapter by running (in the same directory)
+
+   ```bash
+   go install
+   ```
+
+8. Start the GPSAdapter at any time by running `gpsAdapter`
+
+   By default, it accepts connections on port 8000 and connects to the MQTT Broker on the same localhost. All this can be configured by changing the values of constants in the code of main.go in the package gpsAdapter.
