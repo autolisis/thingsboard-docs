@@ -1,5 +1,10 @@
 # Documentation for ThingsBoard
 
+### Introuction
+
+This documentation describes how to set up a ThingsBoard server instance on an Ubuntu server (whether it's a VPS or a baremetal server). Later, we also go into the details of how to integrate existing IoT devices into ThingsBoard using the MQTT Gateway API.
+
+
 0. Pre-requisites
 
    - [Set up Ubuntu Environment](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04#installing-the-oracle-jdk)
